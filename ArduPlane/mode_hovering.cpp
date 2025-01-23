@@ -125,9 +125,10 @@ void ModeHovering::_exit(){
     //zefiroControl.stopInflators();
 }
 
+bool is_armed(){
+    return AP::arming().is_armed();
+}
 
-void is_armed(){
-	if( ap::arming().is_armed() ) {
 		/*int f1 = zefirocontrol.get_value_to_pwm_motor(zefirocontrol.f1_forca_motor, min_motor, max_motor);
 		int f2 = zefirocontrol.get_value_to_pwm_motor(zefirocontrol.f2_forca_motor, min_motor, max_motor);
 		int f3 = zefirocontrol.get_value_to_pwm_motor(zefirocontrol.f3_forca_motor, min_motor, max_motor);
@@ -151,7 +152,8 @@ void is_armed(){
 }
     
 void update_error_position(){
-	if (last_msg_ms != gps().last_message_time_ms()) {
+    static uint32_t last_msg_ms = 0;
+ if (last_msg_ms != gps().last_message_time_ms()) {
 		// Reset the time of message
 		last_msg_ms = gps().last_message_time_ms();
 		if( must_reset_loc ) {
@@ -180,7 +182,7 @@ void update_error_position(){
 
 }	
 	
-void wind_vane_available{
+void wind_vane_available() {
 	if (AP::windvane() == nullptr) {
 		GCS_SEND_TEXT(MAV_SEVERITY_WARNING, "Windvane module not available");
 	}
