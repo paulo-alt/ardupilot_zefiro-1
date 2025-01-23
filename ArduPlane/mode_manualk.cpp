@@ -2,7 +2,6 @@
 #include <AP_Baro/AP_Baro.h>
 #include <AP_HAL/AP_HAL.h>
 
-#if HAL_WITH_IO_MCU || CONFIG_HAL_BOARD == HAL_BOARD_PX4 || CONFIG_HAL_BOARD == HAL_BOARD_VRBRAIN
 #include <AP_BoardConfig/AP_BoardConfig.h>
 #include <AP_IOMCU/AP_IOMCU.h>
 AP_BoardConfig BoardConfig;
